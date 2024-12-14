@@ -1,7 +1,8 @@
 #change_menu_container {
   width: 14rem;
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
   padding: 0.5rem 1rem;
   background-color: white;
   border-radius: 4px;
@@ -12,4 +13,47 @@
     font-weight: 500;
     user-select: none;
   }
+}
+
+#switch_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 3.5rem;
+  padding: 0.4rem 0.45rem;
+
+  background-color: #CACACA;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+
+  svg {
+    color: white;
+  }
+
+  &:has(#switch_checkbox:checked) {
+    background-color: #B148B7;
+
+    & #switch_slider {
+      left: calc(100% - 1.55rem);
+    }
+  }
+}
+
+#switch_checkbox {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+#switch_slider {
+  position: absolute;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  left: 0.3rem;
+  width: 1.25rem;
+  background-color: white;
+  border-radius: 4px;
+  transition: all 0.4s;
 }
