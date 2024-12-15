@@ -6,8 +6,6 @@ import "./change-mode-menu.css";
 export function ChangeModeMenu() {
   const { mode, changeMode } = useContext(ModeContext)
 
-  console.log(mode)
-
   return (
     <div id="change_menu_container">
       <h3>{mode.charAt(0).toUpperCase() + mode.slice(1)} Mode</h3>

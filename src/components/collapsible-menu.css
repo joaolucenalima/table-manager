@@ -1,0 +1,50 @@
+.collapsible_container {
+  background-color: #F9F9F9;
+  border: 1px solid #DDDDDD;
+}
+
+.collapsible_button {
+  padding: 1rem 2rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.collapsible_chevron_icon {
+  transition: transform 0.2s ease-out;
+}
+
+.collapsible_button.active .collapsible_chevron_icon {
+  transform: rotate(180deg);
+}
+
+.collapsible_title_container {
+  flex: 1;
+  text-align: left;
+}
+
+.collapsible_title_container h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.collapsible_title_container span {
+  color: #696969;
+  font-size: 0.8rem;
+}
+
+.collapsible_content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.collapsible_inner_content {
+  padding: 0.5rem 2rem 1rem 2rem;
+}

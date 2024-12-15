@@ -2,6 +2,8 @@ import { ReactNode, createContext, useState } from "react";
 
 interface MenuContextData {
   mode: "edit" | "preview";
+  actualSelection?: "table" | "column";
+  setActualSelection: React.Dispatch<React.SetStateAction<"table" | "column" | undefined>>
   changeMode: () => void;
 }
 
@@ -13,6 +15,7 @@ export const ModeContext = createContext({} as MenuContextData);
 
 export function ModeProvider({ children }: ModeProviderProps) {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
+  const [actualSelection, setActualSelection] = useState<"table" | "column">();
 
   function changeMode() {
     setMode(mode === "edit" ? "preview" : "edit");
@@ -22,7 +25,9 @@ export function ModeProvider({ children }: ModeProviderProps) {
     <ModeContext.Provider
       value={{
         mode,
-        changeMode
+        changeMode,
+        actualSelection,
+        setActualSelection
       }}
     >
       {children}
