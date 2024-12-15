@@ -1,4 +1,4 @@
-import { Palette, Pencil } from "lucide-react";
+import { AlignCenter, AlignLeft, AlignRight, Palette, Pencil } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { ActualSelection } from "../../contexts/mode-context";
 import { CollapsibleMenu } from "../collapsible-menu";
@@ -41,6 +41,26 @@ export function TableEditSidebar({ id }: TableEditSidebarProps) {
               defaultValue={16}
               min={1}
             />
+          </div>
+
+          <div className="form_field">
+            <label htmlFor="table_title_text_align">Alignment</label>
+            <fieldset id="table_title_text_align">
+              <label>
+                <input type="radio" name="table_title_text_align" value="left" defaultChecked />
+                <AlignLeft />
+              </label>
+
+              <label>
+                <input type="radio" name="table_title_text_align" value="center" />
+                <AlignCenter />
+              </label>
+
+              <label>
+                <input type="radio" name="table_title_text_align" value="right" />
+                <AlignRight />
+              </label>
+            </fieldset>
           </div>
         </div>
       </CollapsibleMenu>

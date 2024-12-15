@@ -41,3 +41,35 @@ aside {
 .entire_row {
   grid-column: 1 / -1;
 }
+
+#table_title_text_align {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: inherit;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  padding: 0.2rem;
+}
+
+#table_title_text_align label {
+  margin: 0;
+  padding: 0.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+
+  svg {
+    display: block;
+    height: 1rem;
+  }
+}
+
+#table_title_text_align label:has(input[type="radio"]:checked) {
+  background-color: #D9D9D9;
+}
+
+#table_title_text_align input[type="radio"] {
+  display: none;
+  height: 0;
+  width: 0;
+}
