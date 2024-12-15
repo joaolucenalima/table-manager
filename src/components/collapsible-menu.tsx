@@ -6,7 +6,7 @@ type CollapsibleMenuProps = {
   children: React.ReactNode;
   icon: React.ReactNode;
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 export function CollapsibleMenu(props: CollapsibleMenuProps) {
@@ -38,7 +38,7 @@ export function CollapsibleMenu(props: CollapsibleMenuProps) {
 
         <div className="collapsible_title_container">
           <h3>{props.title}</h3>
-          <span>{props.subtitle}</span>
+          {props.subtitle && <span>{props.subtitle}</span>}
         </div>
 
         <ChevronUp size={18} strokeWidth={3} className="collapsible_chevron_icon" />

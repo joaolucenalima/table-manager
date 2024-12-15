@@ -1,5 +1,5 @@
 import { ChangeModeMenu } from "./components/change-mode-menu"
-import { Sidebar } from "./components/sidebar"
+import { Sidebar } from "./components/sidebar/sidebar"
 
 function App() {
   return (

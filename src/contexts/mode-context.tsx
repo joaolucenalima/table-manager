@@ -1,21 +1,29 @@
 import { ReactNode, createContext, useState } from "react";
 
-interface MenuContextData {
+export type ActualSelection = {
+  id: string,
+  type: "table" | "column"
+}
+
+type ModeContextData = {
   mode: "edit" | "preview";
-  actualSelection?: "table" | "column";
-  setActualSelection: React.Dispatch<React.SetStateAction<"table" | "column" | undefined>>
+  actualSelection: ActualSelection;
+  setActualSelection: React.Dispatch<React.SetStateAction<ActualSelection>>
   changeMode: () => void;
 }
 
-interface ModeProviderProps {
+type ModeProviderProps = {
   children: ReactNode
 }
 
-export const ModeContext = createContext({} as MenuContextData);
+export const ModeContext = createContext({} as ModeContextData);
 
 export function ModeProvider({ children }: ModeProviderProps) {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
-  const [actualSelection, setActualSelection] = useState<"table" | "column">();
+  const [actualSelection, setActualSelection] = useState<ActualSelection>({
+    id: "Minha tabela",
+    type: "table"
+  });
 
   function changeMode() {
     setMode(mode === "edit" ? "preview" : "edit");
