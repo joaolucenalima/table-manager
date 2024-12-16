@@ -45,7 +45,7 @@ export function TableEditSidebar({ id }: TableEditSidebarProps) {
 
           <div className="form_field">
             <label htmlFor="table_title_text_align">Alignment</label>
-            <fieldset id="table_title_text_align">
+            <fieldset id="table_title_text_align" className="alignment_fieldset">
               <label>
                 <input type="radio" name="table_title_text_align" value="left" defaultChecked />
                 <AlignLeft />

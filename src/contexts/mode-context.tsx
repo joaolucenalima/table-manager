@@ -21,8 +21,8 @@ export const ModeContext = createContext({} as ModeContextData);
 export function ModeProvider({ children }: ModeProviderProps) {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
   const [actualSelection, setActualSelection] = useState<ActualSelection>({
-    id: "Minha tabela",
-    type: "table"
+    id: "Coluna #1",
+    type: "column"
   });
 
   function changeMode() {

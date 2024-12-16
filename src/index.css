@@ -40,7 +40,6 @@ section {
 label {
   display: block;
   font-size: 0.8rem;
-  margin-bottom: 0.1rem;
 }
 
 input,
@@ -56,4 +55,14 @@ select {
 input:focus,
 select:focus {
   outline: 2px solid #752F79;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  accent-color: #752F79;
+  height: 1rem;
+  width: 1rem;
+  background-color: inherit;
+  border: 1px solid #D9D9D9;
+  cursor: pointer;
 }
