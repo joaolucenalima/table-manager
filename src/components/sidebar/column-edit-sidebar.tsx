@@ -1,6 +1,6 @@
-import { AlignCenter, AlignLeft, AlignRight, MoveDiagonal, Palette, Pencil } from "lucide-react";
-import { Dispatch, SetStateAction } from "react";
-import { ActualSelection } from "../../contexts/mode-context";
+import { AlignCenter, AlignLeft, AlignRight, MoveDiagonal, Palette, Pencil, Trash2 } from "lucide-react";
+import { Dispatch, SetStateAction, useContext } from "react";
+import { ActualSelection, ModeContext } from "../../contexts/mode-context";
 import { CollapsibleMenu } from "../collapsible-menu";
 import { ColorPicker } from "../color-picker";
 
@@ -10,10 +10,23 @@ type ColumnEditSidebarProps = {
 }
 
 export function ColumnEditSidebar({ id }: ColumnEditSidebarProps) {
+  const { tableColumns, removeColumn } = useContext(ModeContext)
+
   return (
     <aside>
       <div id="sidebar_title">
         <h2>{id}</h2>
+
+        {tableColumns.length > 1 && (
+          <button
+            type="button"
+            className="delete_button"
+            title="Remove Column"
+            onClick={() => removeColumn(id)}
+          >
+            <Trash2 size={18} color="#f70a0a" />
+          </button>
+        )}
       </div>
 
       <CollapsibleMenu icon={<Pencil />} title="Title">

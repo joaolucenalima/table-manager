@@ -5,7 +5,7 @@ import { EditTableColumn } from "./edit-table-column"
 import "./edit-table.css"
 
 export function EditTable() {
-  const { setActualSelection } = useContext(ModeContext)
+  const { setActualSelection, tableColumns, addColumn } = useContext(ModeContext)
 
   function handleChangeFocus(e: React.FocusEvent<HTMLDivElement>) {
     const focusedElement = document.querySelector(".focused")
@@ -36,17 +36,16 @@ export function EditTable() {
       </div>
 
       <div className="table_content">
-        <EditTableColumn onFocus={handleChangeFocus} id="1" />
-        <EditTableColumn onFocus={handleChangeFocus} id="2" />
-        <EditTableColumn onFocus={handleChangeFocus} id="3" />
-        <EditTableColumn onFocus={handleChangeFocus} id="4" />
+        {tableColumns.map(column => (
+          <EditTableColumn onFocus={handleChangeFocus} id={column.id} key={column.id} />
+        ))}
+      </div>
 
-        <div className="add_new_column">
-          <button className="main_button">
-            <Plus size={18} />
-            Add Column
-          </button>
-        </div>
+      <div className="add_new_column">
+        <button className="main_button" onClick={addColumn}>
+          <Plus size={18} />
+          Add Column
+        </button>
       </div>
 
       <div className="table_footer">
