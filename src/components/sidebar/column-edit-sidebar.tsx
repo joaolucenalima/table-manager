@@ -1,44 +1,41 @@
-import { AlignCenter, AlignLeft, AlignRight, MoveDiagonal, Palette, Pencil, Trash2 } from "lucide-react";
-import { Dispatch, SetStateAction, useContext } from "react";
-import { ActualSelection, ModeContext } from "../../contexts/mode-context";
+import { AlignCenter, AlignLeft, AlignRight, Eye, MoveDiagonal, Palette, Trash2 } from "lucide-react";
+import { useContext } from "react";
+import { ModeContext } from "../../contexts/mode-context";
 import { CollapsibleMenu } from "../collapsible-menu";
 import { ColorPicker } from "../color-picker";
 
-type ColumnEditSidebarProps = {
-  id: string;
-  setActualSelection: Dispatch<SetStateAction<ActualSelection>>;
-}
+export function ColumnEditSidebar() {
+  const { tableColumns, removeColumn, actualSelection } = useContext(ModeContext)
 
-export function ColumnEditSidebar({ id }: ColumnEditSidebarProps) {
-  const { tableColumns, removeColumn } = useContext(ModeContext)
+  const columnDataIndex = tableColumns.findIndex(column => column.id == actualSelection.id)
 
   return (
     <aside>
       <div id="sidebar_title">
-        <h2>{id}</h2>
+        <h2>{tableColumns[columnDataIndex].title}</h2>
 
         {tableColumns.length > 1 && (
           <button
             type="button"
             className="delete_button"
             title="Remove Column"
-            onClick={() => removeColumn(id)}
+            onClick={() => removeColumn(actualSelection.id)}
           >
             <Trash2 size={18} color="#f70a0a" />
           </button>
         )}
       </div>
 
-      <CollapsibleMenu icon={<Pencil />} title="Title">
+      <CollapsibleMenu icon={<Eye />} title="Visual">
         <div className="grid_form two_columns">
           <div className="form_field entire_row">
             <label htmlFor="column_title">Column header</label>
-            <input type="text" name="column_title" id="column_title" />
+            <input type="text" id="column_title" autoComplete="off" />
           </div>
 
           <div className="form_field">
             <label htmlFor="column_font_weight">Font Weight</label>
-            <select name="column_font_weight" id="column_font_weight">
+            <select id="column_font_weight">
               <option value="normal">Normal</option>
               <option value="bold">Bold</option>
               <option value="extra_bold">Extra Bold</option>
@@ -49,7 +46,6 @@ export function ColumnEditSidebar({ id }: ColumnEditSidebarProps) {
             <label htmlFor="column_font_size">Font Size</label>
             <input
               type="number"
-              name="column_font_size"
               id="column_font_size"
               defaultValue={16}
               min={1}
@@ -60,17 +56,17 @@ export function ColumnEditSidebar({ id }: ColumnEditSidebarProps) {
             <label htmlFor="column_text_align">Alignment</label>
             <fieldset id="column_text_align" className="alignment_fieldset">
               <label>
-                <input type="radio" name="column_text_align" value="left" defaultChecked />
+                <input type="radio" value="left" defaultChecked />
                 <AlignLeft />
               </label>
 
               <label>
-                <input type="radio" name="column_text_align" value="center" />
+                <input type="radio" value="center" />
                 <AlignCenter />
               </label>
 
               <label>
-                <input type="radio" name="column_text_align" value="right" />
+                <input type="radio" value="right" />
                 <AlignRight />
               </label>
             </fieldset>
@@ -84,7 +80,6 @@ export function ColumnEditSidebar({ id }: ColumnEditSidebarProps) {
             <label htmlFor="column_width">Width</label>
             <input
               type="number"
-              name="column_width"
               id="column_width"
               min={1}
             />
@@ -93,7 +88,7 @@ export function ColumnEditSidebar({ id }: ColumnEditSidebarProps) {
           <div className="form_field">
             <label className="one_line_field">
               <span>Fit Content</span>
-              <input type="checkbox" name="column_fit_content" />
+              <input type="checkbox" />
             </label>
           </div>
         </div>

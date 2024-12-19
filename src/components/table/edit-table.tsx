@@ -2,10 +2,10 @@ import { Plus } from "lucide-react"
 import { useContext } from "react"
 import { ModeContext } from "../../contexts/mode-context"
 import { EditTableColumn } from "./edit-table-column"
-import "./edit-table.css"
+import "./table.css"
 
 export function EditTable() {
-  const { setActualSelection, tableColumns, addColumn } = useContext(ModeContext)
+  const { setActualSelection, tableColumns, addColumn, tableConfiguration } = useContext(ModeContext)
 
   function handleChangeFocus(e: React.FocusEvent<HTMLDivElement>) {
     const focusedElement = document.querySelector(".focused")
@@ -19,25 +19,30 @@ export function EditTable() {
     if (e.target.classList.contains("table_header")) {
       setActualSelection({
         type: "table",
-        id: ""
+        id: null
       })
     } else {
       setActualSelection({
         type: "column",
-        id: e.target.id
+        id: Number(e.target.id)
       })
     }
   }
 
   return (
     <div className="table_container">
-      <div className="table_header" tabIndex={1} onFocus={handleChangeFocus}>
-        <span>Dynamic Table #1</span>
+      <div className="table_header" tabIndex={1} onFocus={handleChangeFocus}
+        style={{
+          fontSize: `${tableConfiguration.titleFontSize || 18}px`,
+          fontWeight: tableConfiguration.titleFontWeight
+        }}
+      >
+        {tableConfiguration.title}
       </div>
 
       <div className="table_content">
         {tableColumns.map(column => (
-          <EditTableColumn onFocus={handleChangeFocus} id={column.id} key={column.id} />
+          <EditTableColumn onFocus={handleChangeFocus} column={column} key={column.id} />
         ))}
       </div>
 
@@ -46,9 +51,6 @@ export function EditTable() {
           <Plus size={18} />
           Add Column
         </button>
-      </div>
-
-      <div className="table_footer">
       </div>
     </div>
   )

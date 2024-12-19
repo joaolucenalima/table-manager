@@ -5,7 +5,7 @@ import "./sidebar.css";
 import { TableEditSidebar } from "./table-edit-sidebar";
 
 export function Sidebar() {
-  const { mode, actualSelection, setActualSelection } = useContext(ModeContext)
+  const { mode, actualSelection } = useContext(ModeContext)
 
   if (mode === "preview") {
     return (
@@ -21,17 +21,11 @@ export function Sidebar() {
 
   if (actualSelection.type === "table") {
     return (
-      <TableEditSidebar
-        id={actualSelection.id}
-        setActualSelection={setActualSelection}
-      />
+      <TableEditSidebar />
     )
   }
 
   return (
-    <ColumnEditSidebar
-      id={actualSelection.id}
-      setActualSelection={setActualSelection}
-    />
+    <ColumnEditSidebar />
   )
 }
