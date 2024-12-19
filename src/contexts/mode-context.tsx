@@ -1,21 +1,19 @@
 import { ReactNode, createContext, useState } from "react";
 
-export type ActualSelection =
-  | { type: "table"; id: null }
-  | { type: "column"; id: number };
+export type ActualSelection = {
+  type: "column" | "table";
+  id: number;
+};
 
 export type TableConfiguration = {
   title: string;
-  titleFontWeight: string;
-  titleFontSize: number;
+  fontWeight: string;
 }
 
 export type TableColumn = {
   id: number;
   title: string;
-  fontWeight: string;
-  fontSize: number;
-  textAlign: string;
+  textAlign: "left" | "center" | "right";
 }
 
 type ModeContextData = {
@@ -26,6 +24,7 @@ type ModeContextData = {
   tableConfiguration: TableConfiguration;
   setTableConfiguration: React.Dispatch<React.SetStateAction<TableConfiguration>>;
   tableColumns: TableColumn[];
+  setTableColumns: React.Dispatch<React.SetStateAction<TableColumn[]>>;
   addColumn: () => void;
   removeColumn: (id: number) => void;
 }
@@ -39,22 +38,18 @@ export const ModeContext = createContext({} as ModeContextData);
 export function ModeProvider({ children }: ModeProviderProps) {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
   const [actualSelection, setActualSelection] = useState<ActualSelection>({
-    id: null,
-    type: "table"
+    type: "table",
+    id: 0
   });
 
   const [tableConfiguration, setTableConfiguration] = useState<TableConfiguration>({
-    title: "Dynamic Table #1",
-    titleFontWeight: "400",
-    titleFontSize: 18
+    title: "Table Title",
+    fontWeight: "500"
   });
-
   const [tableColumns, setTableColumns] = useState<TableColumn[]>([
     {
       id: 1,
       title: "Column #1",
-      fontWeight: "400",
-      fontSize: 16,
       textAlign: "left"
     }
   ])
@@ -67,8 +62,6 @@ export function ModeProvider({ children }: ModeProviderProps) {
       {
         id: nextId,
         title: `Column #${nextId}`,
-        fontWeight: "normal",
-        fontSize: 16,
         textAlign: "left"
       }
     ])
@@ -107,6 +100,7 @@ export function ModeProvider({ children }: ModeProviderProps) {
         tableConfiguration,
         setTableConfiguration,
         tableColumns,
+        setTableColumns,
         addColumn,
         removeColumn
       }}

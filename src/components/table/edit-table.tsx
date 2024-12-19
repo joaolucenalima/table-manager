@@ -19,7 +19,7 @@ export function EditTable() {
     if (e.target.classList.contains("table_header")) {
       setActualSelection({
         type: "table",
-        id: null
+        id: 0
       })
     } else {
       setActualSelection({
@@ -31,11 +31,11 @@ export function EditTable() {
 
   return (
     <div className="table_container">
-      <div className="table_header" tabIndex={1} onFocus={handleChangeFocus}
-        style={{
-          fontSize: `${tableConfiguration.titleFontSize || 18}px`,
-          fontWeight: tableConfiguration.titleFontWeight
-        }}
+      <div
+        className="table_header"
+        tabIndex={1}
+        onFocus={handleChangeFocus}
+        style={{ fontWeight: tableConfiguration.fontWeight }}
       >
         {tableConfiguration.title}
       </div>

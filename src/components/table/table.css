@@ -84,6 +84,8 @@
 }
 
 .column_title {
+  flex: 1;
+  text-align: inherit;
   font-weight: 500;
   font-size: 1rem;
   z-index: 10;

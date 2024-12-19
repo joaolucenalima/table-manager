@@ -1,13 +1,19 @@
-import { AlignCenter, AlignLeft, AlignRight, Eye, MoveDiagonal, Palette, Trash2 } from "lucide-react";
+import { AlignCenter, AlignLeft, AlignRight, Trash2 } from "lucide-react";
 import { useContext } from "react";
 import { ModeContext } from "../../contexts/mode-context";
-import { CollapsibleMenu } from "../collapsible-menu";
-import { ColorPicker } from "../color-picker";
 
 export function ColumnEditSidebar() {
-  const { tableColumns, removeColumn, actualSelection } = useContext(ModeContext)
+  const { tableColumns, setTableColumns, removeColumn, actualSelection } = useContext(ModeContext)
 
   const columnDataIndex = tableColumns.findIndex(column => column.id == actualSelection.id)
+
+  function changeColumnConfiguration(key: "title" | "textAlign", value: string) {
+    const updatedColumns = [...tableColumns];
+
+    updatedColumns[columnDataIndex][key] = value;
+
+    setTableColumns(updatedColumns);
+  }
 
   return (
     <aside>
@@ -26,80 +32,58 @@ export function ColumnEditSidebar() {
         )}
       </div>
 
-      <CollapsibleMenu icon={<Eye />} title="Visual">
-        <div className="grid_form two_columns">
-          <div className="form_field entire_row">
-            <label htmlFor="column_title">Column header</label>
-            <input type="text" id="column_title" autoComplete="off" />
-          </div>
+      <span className="divider" />
 
-          <div className="form_field">
-            <label htmlFor="column_font_weight">Font Weight</label>
-            <select id="column_font_weight">
-              <option value="normal">Normal</option>
-              <option value="bold">Bold</option>
-              <option value="extra_bold">Extra Bold</option>
-            </select>
-          </div>
-
-          <div className="form_field">
-            <label htmlFor="column_font_size">Font Size</label>
-            <input
-              type="number"
-              id="column_font_size"
-              defaultValue={16}
-              min={1}
-            />
-          </div>
-
-          <div className="form_field">
-            <label htmlFor="column_text_align">Alignment</label>
-            <fieldset id="column_text_align" className="alignment_fieldset">
-              <label>
-                <input type="radio" value="left" defaultChecked />
-                <AlignLeft />
-              </label>
-
-              <label>
-                <input type="radio" value="center" />
-                <AlignCenter />
-              </label>
-
-              <label>
-                <input type="radio" value="right" />
-                <AlignRight />
-              </label>
-            </fieldset>
-          </div>
+      <div className="sidebar_content">
+        <div>
+          <label htmlFor="column_title">Column header</label>
+          <input
+            type="text"
+            id="column_title"
+            value={tableColumns[columnDataIndex].title}
+            onChange={(e) => changeColumnConfiguration("title", e.target.value)}
+          />
         </div>
-      </CollapsibleMenu>
 
-      <CollapsibleMenu icon={<MoveDiagonal />} title="Size">
-        <div className="grid_form two_columns">
-          <div className="form_field">
-            <label htmlFor="column_width">Width</label>
-            <input
-              type="number"
-              id="column_width"
-              min={1}
-            />
-          </div>
-
-          <div className="form_field">
-            <label className="one_line_field">
-              <span>Fit Content</span>
-              <input type="checkbox" />
+        <div className="one_line_field">
+          <label htmlFor="column_text_align">Text Alignment</label>
+          <fieldset
+            id="column_text_align"
+            className="alignment_fieldset"
+            onChange={(e) => changeColumnConfiguration("textAlign", (e.target as HTMLInputElement).value)}
+          >
+            <label>
+              <input
+                type="radio"
+                name="column_alignment"
+                value="left"
+                checked={tableColumns[columnDataIndex].textAlign === "left"}
+              />
+              <AlignLeft />
             </label>
-          </div>
-        </div>
-      </CollapsibleMenu>
 
-      <CollapsibleMenu icon={<Palette />} title="Color">
-        <div className="grid_form three_columns">
-          <ColorPicker label="Header" id="column_header_color" />
-          <ColorPicker label="Background" id="column_background_color" />
+            <label>
+              <input
+                type="radio"
+                name="column_alignment"
+                value="center"
+                checked={tableColumns[columnDataIndex].textAlign === "center"}
+              />
+              <AlignCenter />
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="column_alignment"
+                value="right"
+                checked={tableColumns[columnDataIndex].textAlign === "right"}
+              />
+              <AlignRight />
+            </label>
+          </fieldset>
         </div>
-      </CollapsibleMenu>
+      </div>
     </aside>
   )
 }

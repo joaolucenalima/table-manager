@@ -7,19 +7,13 @@ export function PreviewTable() {
 
   return (
     <div className="table_container">
-      <div
-        className="table_header"
-        style={{
-          fontSize: `${tableConfiguration.titleFontSize || 18}px`,
-          fontWeight: tableConfiguration.titleFontWeight
-        }}
-      >
+      <div className="table_header">
         {tableConfiguration.title}
       </div>
 
       <div className="table_content">
         {tableColumns.map(column => (
-          <div className="preview_table_column">
+          <div className="preview_table_column" style={{ textAlign: column.textAlign }}>
             <div className="column_header">
               <span className="column_title">
                 {column.title}

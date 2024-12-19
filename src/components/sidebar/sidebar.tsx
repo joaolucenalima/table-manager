@@ -14,7 +14,7 @@ export function Sidebar() {
           <h2>Preview Mode</h2>
         </div>
 
-        <span id="divider"></span>
+        <span className="divider" />
       </aside>
     )
   }
