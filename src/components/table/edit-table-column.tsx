@@ -1,15 +1,15 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { TableColumn } from "../../contexts/mode-context";
+import { useContext } from "react";
+import { ModeContext, TableColumn } from "../../contexts/mode-context";
 
 type EditTableColumnProps = {
   onFocus: (e: React.FocusEvent<HTMLDivElement>) => void,
-  column: TableColumn
+  column: TableColumn,
+  index: number,
 };
 
-export function EditTableColumn({ onFocus, column }: EditTableColumnProps) {
-  function handleChangeColumnPosition(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log('change column position');
-  }
+export function EditTableColumn({ onFocus, column, index }: EditTableColumnProps) {
+  const { tableColumns, changeColumnPosition } = useContext(ModeContext);
 
   return (
     <div
@@ -27,16 +27,18 @@ export function EditTableColumn({ onFocus, column }: EditTableColumnProps) {
         <div className="column_actions">
           <button
             className="move_column_button"
-            onClick={handleChangeColumnPosition}
+            onClick={() => changeColumnPosition(index, "left")}
             onFocus={e => e.stopPropagation()}
+            disabled={index === 0}
           >
             <ChevronLeft size={16} />
           </button>
 
           <button
             className="move_column_button"
-            onClick={handleChangeColumnPosition}
+            onClick={() => changeColumnPosition(index, "right")}
             onFocus={e => e.stopPropagation()}
+            disabled={index == tableColumns.length - 1}
           >
             <ChevronRight size={16} />
           </button>

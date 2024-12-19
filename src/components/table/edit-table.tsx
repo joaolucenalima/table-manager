@@ -41,8 +41,13 @@ export function EditTable() {
       </div>
 
       <div className="table_content">
-        {tableColumns.map(column => (
-          <EditTableColumn onFocus={handleChangeFocus} column={column} key={column.id} />
+        {tableColumns.map((column, index) => (
+          <EditTableColumn
+            onFocus={handleChangeFocus}
+            column={column}
+            index={index}
+            key={column.id}
+          />
         ))}
       </div>
 

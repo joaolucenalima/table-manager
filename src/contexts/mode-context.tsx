@@ -27,6 +27,7 @@ type ModeContextData = {
   setTableColumns: React.Dispatch<React.SetStateAction<TableColumn[]>>;
   addColumn: () => void;
   removeColumn: (id: number) => void;
+  changeColumnPosition: (index: number, direction: "left" | "right") => void;
 }
 
 type ModeProviderProps = {
@@ -86,6 +87,19 @@ export function ModeProvider({ children }: ModeProviderProps) {
     document.getElementById(newSelectionId.toString())?.classList.add("focused")
   }
 
+  function changeColumnPosition(index: number, direction: "left" | "right") {
+    const newColumns = [...tableColumns];
+    const column = newColumns.splice(index, 1)[0];
+
+    if (direction === "left") {
+      newColumns.splice(index - 1, 0, column);
+    } else {
+      newColumns.splice(index + 1, 0, column);
+    }
+
+    setTableColumns(newColumns);
+  }
+
   function changeMode() {
     setMode(mode === "edit" ? "preview" : "edit");
   }
@@ -102,7 +116,8 @@ export function ModeProvider({ children }: ModeProviderProps) {
         tableColumns,
         setTableColumns,
         addColumn,
-        removeColumn
+        removeColumn,
+        changeColumnPosition
       }}
     >
       {children}

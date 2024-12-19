@@ -114,6 +114,11 @@
   &:hover {
     background-color: #f3f3f3;
   }
+
+  &:disabled {
+    background-color: #F9F9F9;
+    cursor: not-allowed;
+  }
 }
 
 .add_new_column {
