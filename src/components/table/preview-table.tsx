@@ -7,7 +7,7 @@ export function PreviewTable() {
 
   return (
     <div className="table_container">
-      <div className="table_header">
+      <div className="table_header" style={{ fontWeight: tableConfiguration.fontWeight }}>
         {tableConfiguration.title}
       </div>
 

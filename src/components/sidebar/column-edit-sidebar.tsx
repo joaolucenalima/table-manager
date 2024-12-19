@@ -1,13 +1,16 @@
 import { AlignCenter, AlignLeft, AlignRight, Trash2 } from "lucide-react";
 import { useContext } from "react";
-import { ModeContext } from "../../contexts/mode-context";
+import { ModeContext, TableColumn } from "../../contexts/mode-context";
 
 export function ColumnEditSidebar() {
   const { tableColumns, setTableColumns, removeColumn, actualSelection } = useContext(ModeContext)
 
   const columnDataIndex = tableColumns.findIndex(column => column.id == actualSelection.id)
 
-  function changeColumnConfiguration(key: "title" | "textAlign", value: string) {
+  function changeColumnConfiguration<K extends keyof TableColumn>(
+    key: K,
+    value: TableColumn[K]
+  ) {
     const updatedColumns = [...tableColumns];
 
     updatedColumns[columnDataIndex][key] = value;
@@ -42,6 +45,7 @@ export function ColumnEditSidebar() {
             id="column_title"
             value={tableColumns[columnDataIndex].title}
             onChange={(e) => changeColumnConfiguration("title", e.target.value)}
+            autoComplete="off"
           />
         </div>
 
@@ -50,7 +54,7 @@ export function ColumnEditSidebar() {
           <fieldset
             id="column_text_align"
             className="alignment_fieldset"
-            onChange={(e) => changeColumnConfiguration("textAlign", (e.target as HTMLInputElement).value)}
+            onChange={(e) => changeColumnConfiguration("textAlign", (e.target as HTMLInputElement).value as "left" | "center" | "right")}
           >
             <label>
               <input
