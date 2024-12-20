@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useContext } from "react";
-import { ModeContext, TableColumn } from "../../contexts/mode-context";
+import { TableColumn, TableContext } from "../../contexts/table-context";
 
 type EditTableColumnProps = {
   onFocus: (e: React.FocusEvent<HTMLDivElement>) => void,
@@ -9,7 +9,7 @@ type EditTableColumnProps = {
 };
 
 export function EditTableColumn({ onFocus, column, index }: EditTableColumnProps) {
-  const { tableColumns, changeColumnPosition } = useContext(ModeContext);
+  const { tableColumns, changeColumnPosition } = useContext(TableContext);
 
   return (
     <div

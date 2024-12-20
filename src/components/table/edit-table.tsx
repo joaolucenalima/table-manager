@@ -1,11 +1,11 @@
 import { Plus } from "lucide-react"
 import { useContext } from "react"
-import { ModeContext } from "../../contexts/mode-context"
+import { TableContext } from "../../contexts/table-context"
 import { EditTableColumn } from "./edit-table-column"
 import "./table.css"
 
 export function EditTable() {
-  const { setActualSelection, tableColumns, addColumn, tableConfiguration } = useContext(ModeContext)
+  const { setActualSelection, tableColumns, addColumn, tableConfiguration } = useContext(TableContext)
 
   function handleChangeFocus(e: React.FocusEvent<HTMLDivElement>) {
     const focusedElement = document.querySelector(".focused")

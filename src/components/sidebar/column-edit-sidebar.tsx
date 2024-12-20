@@ -1,9 +1,9 @@
 import { AlignCenter, AlignLeft, AlignRight, ChevronUp, Trash2 } from "lucide-react";
 import { useContext } from "react";
-import { ModeContext, TableColumn } from "../../contexts/mode-context";
+import { TableColumn, TableContext } from "../../contexts/table-context";
 
 export function ColumnEditSidebar() {
-  const { tableColumns, setTableColumns, removeColumn, actualSelection } = useContext(ModeContext)
+  const { tableColumns, setTableColumns, removeColumn, actualSelection } = useContext(TableContext)
 
   const columnDataIndex = tableColumns.findIndex(column => column.id == actualSelection.id)
 

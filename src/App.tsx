@@ -3,10 +3,10 @@ import { ChangeModeMenu } from "./components/change-mode-menu"
 import { Sidebar } from "./components/sidebar/sidebar"
 import { EditTable } from "./components/table/edit-table"
 import { PreviewTable } from "./components/table/preview-table"
-import { ModeContext } from "./contexts/mode-context"
+import { TableContext } from "./contexts/table-context"
 
 function App() {
-  const { mode } = useContext(ModeContext)
+  const { mode } = useContext(TableContext)
 
   return (
     <>

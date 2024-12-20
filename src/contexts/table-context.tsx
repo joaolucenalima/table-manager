@@ -16,7 +16,7 @@ export type TableColumn = {
   textAlign: "left" | "center" | "right";
 }
 
-type ModeContextData = {
+type TableContextData = {
   mode: "edit" | "preview";
   actualSelection: ActualSelection;
   setActualSelection: React.Dispatch<React.SetStateAction<ActualSelection>>
@@ -30,13 +30,13 @@ type ModeContextData = {
   changeColumnPosition: (index: number, direction: "left" | "right") => void;
 }
 
-type ModeProviderProps = {
+type TableProviderProps = {
   children: ReactNode
 }
 
-export const ModeContext = createContext({} as ModeContextData);
+export const TableContext = createContext({} as TableContextData);
 
-export function ModeProvider({ children }: ModeProviderProps) {
+export function TableProvider({ children }: TableProviderProps) {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
   const [actualSelection, setActualSelection] = useState<ActualSelection>({
     type: "table",
@@ -105,7 +105,7 @@ export function ModeProvider({ children }: ModeProviderProps) {
   }
 
   return (
-    <ModeContext.Provider
+    <TableContext.Provider
       value={{
         mode,
         changeMode,
@@ -121,6 +121,6 @@ export function ModeProvider({ children }: ModeProviderProps) {
       }}
     >
       {children}
-    </ModeContext.Provider>
+    </TableContext.Provider>
   );
 }

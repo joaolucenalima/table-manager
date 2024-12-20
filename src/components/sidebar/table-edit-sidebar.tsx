@@ -1,9 +1,9 @@
 import { ChevronUp } from "lucide-react";
 import { useContext } from "react";
-import { ModeContext } from "../../contexts/mode-context";
+import { TableContext } from "../../contexts/table-context";
 
 export function TableEditSidebar() {
-  const { tableConfiguration, setTableConfiguration } = useContext(ModeContext)
+  const { tableConfiguration, setTableConfiguration } = useContext(TableContext)
 
   return (
     <aside id="sidebar">

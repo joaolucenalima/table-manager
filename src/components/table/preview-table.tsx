@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { ModeContext } from "../../contexts/mode-context"
+import { TableContext } from "../../contexts/table-context"
 import "./preview-table.css"
 
 type PostsType = {
@@ -10,7 +10,7 @@ type PostsType = {
 }
 
 export function PreviewTable() {
-  const { tableColumns, tableConfiguration } = useContext(ModeContext)
+  const { tableColumns, tableConfiguration } = useContext(TableContext)
 
   const [posts, setPosts] = useState<PostsType[]>()
 

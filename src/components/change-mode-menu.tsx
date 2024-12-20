@@ -1,10 +1,10 @@
 import { Eye, Pencil } from "lucide-react";
 import { useContext } from "react";
-import { ModeContext } from "../contexts/mode-context";
+import { TableContext } from "../contexts/table-context";
 import "./change-mode-menu.css";
 
 export function ChangeModeMenu() {
-  const { mode, changeMode } = useContext(ModeContext)
+  const { mode, changeMode } = useContext(TableContext)
 
   return (
     <div id="change_menu_container">

@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { ModeContext } from "../../contexts/mode-context";
+import { TableContext } from "../../contexts/table-context";
 import { ColumnEditSidebar } from "./column-edit-sidebar";
 import "./sidebar.css";
 import { TableEditSidebar } from "./table-edit-sidebar";
 
 export function Sidebar() {
-  const { mode, actualSelection } = useContext(ModeContext)
+  const { mode, actualSelection } = useContext(TableContext)
 
   if (mode === "preview") {
     return (
