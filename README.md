@@ -1,39 +1,39 @@
 # Table Manager
 
-Instruções:
+## Requisitos
 
-1. Visão geral do aplicativo gerenciador de tabela:
+Node.js (versão utilizada no projeto: 20.18.0)
 
-   - Você está encarregado de construir um aplicativo web que monta uma tabela simples, mas eficaz.
-   - O aplicativo deve permitir que os usuários modifiquem as colunas de uma tabela em tempo real. Esta tabela deverá conter dados fictícios para demonstração apenas.
-   - Deverá ter um painel lateral que possibilita a modificação do título da tabela.
-   - Deverá ter um painel lateral que possibilita a modificação do título da coluna.
-   - Deverá ter a possibilidade de alterar as ordens das colunas.
-   - O usuário poderá ver em tempo real a modificação da tabela no centro da tela, do tipo de um "preview". Veja o vídeo gravado para entender como deverá funcionar.
-   - Note que ao sair do preview no vídeo não mostra nenhum dado populado na tabela, você deverá popular a tabela com dados fictícios.
+## Como Executar o Projeto
 
-2. Requisitos Técnicos:
+Para executar o projeto localmente, siga as instruções abaixo:
 
-   - Utilize ReactJS para construir a interface do usuário.
-   - Implemente TypeScript para digitação estática e legibilidade aprimorada de código.
-   - Use técnicas apropriadas de gerenciamento de estado (por exemplo, React Hooks, Context API).
-   - Garanta capacidade de resposta para diversos tamanhos de tela (desktop, tablet, celular).
-   - Aplicar as melhores práticas para organização, legibilidade e manutenção do código.
-   - Incorporar CSS básico ou estruturas CSS para estilo (por exemplo, Bootstrap, Material-UI).
+1. **Clone o repositório:**
 
-   * Implementar teste unitário com JEST (não obrigatório mas recomendável).
+   ```bash
+   git clone https://github.com/joaolucenalima/table-manager.git
+   cd table-manager
+   ```
 
-3. Entregáveis:
+2. **Instale as dependências:**
 
-   - Repositório GitHub contendo o código-fonte do aplicativo montador de tabelas.
-   - Arquivo README.md com instruções sobre como executar o aplicativo localmente.
-   - Breve documentação.
+   ```bash
+   npm i
+   ```
 
-4. Critérios de Avaliação:
+3. **Inicie o servidor de desenvolvimento:**
 
-   - Proficiência técnica: Quão eficazmente você utiliza ReactJS e TypeScript para implementar os recursos necessários.
-   - Qualidade do código: Clareza, organização e facilidade de manutenção da sua base de código.
-   - Design de interface do usuário: Design intuitivo e responsivo da interface de gerenciamento de tarefas.
-   - Documentação: Qualidade do seu arquivo README.md e qualquer documentação adicional fornecida.
-   - Teste unitário: Qualidade do teste unitário e cobertura de código (parte do código escolhida e importância do do teste).
-   - Criatividade e resolução de problemas: Sua capacidade de superar desafios e implementar soluções inovadoras.
+   ```bash
+   npm start
+   ```
+
+# Estrutura do projeto
+
+A estrutura de arquivos utilizada no projeto é organizada da seguinte forma:
+
+- **src/**: Diretório principal contendo o código-fonte do projeto.
+
+  - **components/**: Contém os componentes reutilizáveis da aplicação. Componentes maiores que contém muitos sub-componentes são também separados em pastas com seu nome.
+  - **contexts/**: Contém todos os contextos usados na aplicação.
+
+Os arquivos .css estão no mesmo nível hierárquico que os componentes que o utilizam, pois assim fica mais fácil encontrar estilizações específicas de componentes.
