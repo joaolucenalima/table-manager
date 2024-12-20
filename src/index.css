@@ -94,6 +94,26 @@ button svg {
   }
 }
 
+.main_button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #B148B7;
+  border: none;
+  border-radius: 4px;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #A13DA3;
+  }
+}
+
 @media (max-width: 1280px) {
   :root {
     font-size: 95%;
