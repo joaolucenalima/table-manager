@@ -1,3 +1,4 @@
+import { ChevronUp } from "lucide-react";
 import { useContext } from "react";
 import { ModeContext } from "../../contexts/mode-context";
 
@@ -5,8 +6,14 @@ export function TableEditSidebar() {
   const { tableConfiguration, setTableConfiguration } = useContext(ModeContext)
 
   return (
-    <aside>
-      <div id="sidebar_title">
+    <aside id="sidebar">
+      <div id="sidebar_title" className="table_edit_sidebar">
+        <button
+          id="expand_button"
+          onClick={() => document.getElementById("sidebar")?.classList.toggle("expanded")}
+        >
+          <ChevronUp size={16} />
+        </button>
         <h2>Table Edit</h2>
       </div>
 

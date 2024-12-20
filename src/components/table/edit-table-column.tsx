@@ -26,7 +26,7 @@ export function EditTableColumn({ onFocus, column, index }: EditTableColumnProps
 
         <div className="column_actions">
           <button
-            className="move_column_button"
+            className="action_button"
             onClick={() => changeColumnPosition(index, "left")}
             onFocus={e => e.stopPropagation()}
             disabled={index === 0}
@@ -35,7 +35,7 @@ export function EditTableColumn({ onFocus, column, index }: EditTableColumnProps
           </button>
 
           <button
-            className="move_column_button"
+            className="action_button"
             onClick={() => changeColumnPosition(index, "right")}
             onFocus={e => e.stopPropagation()}
             disabled={index == tableColumns.length - 1}

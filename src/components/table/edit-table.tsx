@@ -54,7 +54,7 @@ export function EditTable() {
       <div className="add_new_column">
         <button className="main_button" onClick={addColumn}>
           <Plus size={18} />
-          Add Column
+          Add
         </button>
       </div>
     </div>

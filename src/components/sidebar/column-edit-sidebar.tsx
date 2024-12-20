@@ -1,4 +1,4 @@
-import { AlignCenter, AlignLeft, AlignRight, Trash2 } from "lucide-react";
+import { AlignCenter, AlignLeft, AlignRight, ChevronUp, Trash2 } from "lucide-react";
 import { useContext } from "react";
 import { ModeContext, TableColumn } from "../../contexts/mode-context";
 
@@ -12,16 +12,26 @@ export function ColumnEditSidebar() {
     value: TableColumn[K]
   ) {
     const updatedColumns = [...tableColumns];
-
     updatedColumns[columnDataIndex][key] = value;
 
     setTableColumns(updatedColumns);
   }
 
   return (
-    <aside>
+    <aside id="sidebar">
       <div id="sidebar_title">
-        <h2>{tableColumns[columnDataIndex].title}</h2>
+        <button
+          id="expand_button"
+          className="action_button"
+          title="Show edit options"
+          onClick={() => document.getElementById("sidebar")?.classList.toggle("expanded")}
+        >
+          <ChevronUp size={16} />
+        </button>
+
+        <h2 title={tableColumns[columnDataIndex].title}>
+          {tableColumns[columnDataIndex].title}
+        </h2>
 
         {tableColumns.length > 1 && (
           <button
@@ -30,7 +40,7 @@ export function ColumnEditSidebar() {
             title="Remove Column"
             onClick={() => removeColumn(actualSelection.id)}
           >
-            <Trash2 size={18} color="#f70a0a" />
+            <Trash2 size={16} color="#f70a0a" />
           </button>
         )}
       </div>
@@ -54,7 +64,6 @@ export function ColumnEditSidebar() {
           <fieldset
             id="column_text_align"
             className="alignment_fieldset"
-            onChange={(e) => changeColumnConfiguration("textAlign", (e.target as HTMLInputElement).value as "left" | "center" | "right")}
           >
             <label>
               <input
@@ -62,6 +71,7 @@ export function ColumnEditSidebar() {
                 name="column_alignment"
                 value="left"
                 checked={tableColumns[columnDataIndex].textAlign === "left"}
+                onChange={(e) => changeColumnConfiguration("textAlign", e.target.value as TableColumn["textAlign"])}
               />
               <AlignLeft />
             </label>
@@ -72,6 +82,7 @@ export function ColumnEditSidebar() {
                 name="column_alignment"
                 value="center"
                 checked={tableColumns[columnDataIndex].textAlign === "center"}
+                onChange={(e) => changeColumnConfiguration("textAlign", e.target.value as TableColumn["textAlign"])}
               />
               <AlignCenter />
             </label>
@@ -82,6 +93,7 @@ export function ColumnEditSidebar() {
                 name="column_alignment"
                 value="right"
                 checked={tableColumns[columnDataIndex].textAlign === "right"}
+                onChange={(e) => changeColumnConfiguration("textAlign", e.target.value as TableColumn["textAlign"])}
               />
               <AlignRight />
             </label>
