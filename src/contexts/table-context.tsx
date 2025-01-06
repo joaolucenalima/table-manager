@@ -75,9 +75,10 @@ export function TableProvider({ children }: TableProviderProps) {
       return;
     }
 
-    setTableColumns(tableColumns.filter(column => column.id !== id))
+    const filteredColumns = tableColumns.filter(column => column.id !== id)
+    setTableColumns(filteredColumns)
 
-    const newSelectionId = tableColumns[columnIndex - 1]?.id || tableColumns[0].id
+    const newSelectionId = filteredColumns[columnIndex - 1]?.id || filteredColumns[0].id
 
     setActualSelection({
       id: newSelectionId,
