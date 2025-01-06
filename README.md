@@ -24,7 +24,7 @@ Para executar o projeto localmente, siga as instruções abaixo:
 3. **Inicie o servidor de desenvolvimento:**
 
    ```bash
-   npm start
+   npm run dev
    ```
 
 # Estrutura do projeto
