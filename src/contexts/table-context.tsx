@@ -8,6 +8,8 @@ export type ActualSelection = {
 export type TableConfiguration = {
   title: string;
   fontWeight: string;
+  titleFontWeight: string;
+  titleFontSize: number
 }
 
 export type TableColumn = {
@@ -45,7 +47,9 @@ export function TableProvider({ children }: TableProviderProps) {
 
   const [tableConfiguration, setTableConfiguration] = useState<TableConfiguration>({
     title: "Table Title",
-    fontWeight: "500"
+    fontWeight: "500",
+    titleFontWeight: "500",
+    titleFontSize: 36
   });
   const [tableColumns, setTableColumns] = useState<TableColumn[]>([
     {
