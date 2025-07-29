@@ -1,5 +1,7 @@
 # Table Manager
 
+Table Manager é uma ferramenta que permite ao usuário criar tabelas totalmente personalizadas de forma simples e intuitiva, como em plataformas low-code.
+
 ## Requisitos
 
 Node.js (versão utilizada no projeto: 20.18.0)
